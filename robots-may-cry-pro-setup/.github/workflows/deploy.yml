@@ -1,0 +1,55 @@
+# CI/CD: en cada push a la rama main, este flujo construye el sitio y,
+# si la construcción tiene éxito, lo despliega automáticamente a GitHub Pages.
+# No hay que arrastrar carpetas a mano nunca más.
+
+name: Construir y desplegar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # permite lanzarlo manualmente desde la pestaña Actions
+
+# Permisos que el despliegue a Pages necesita
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si haces varios pushes seguidos, cancela el despliegue anterior
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Construir el sitio
+        run: pelican content -s publishconf.py -o output
+
+      - name: Subir el resultado como artefacto
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
+
+  deploy:
+    needs: build          # solo despliega si 'build' pasó
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,5 @@
+# Dependencias directas del proyecto, con versión fijada.
+# "Fijar" (pinning) garantiza que tu máquina, la de un colaborador y el
+# servidor de CI construyan el sitio con exactamente las mismas versiones.
+pelican==4.12.0
+markdown==3.7
