@@ -1,0 +1,17 @@
+# Artefactos generados (se reconstruyen; nunca se versionan)
+output/
+*.pid
+
+# Entorno virtual de Python
+.venv/
+venv/
+env/
+
+# Cache de Python
+__pycache__/
+*.py[cod]
+
+# Sistema / editor
+.DS_Store
+.vscode/
+.idea/

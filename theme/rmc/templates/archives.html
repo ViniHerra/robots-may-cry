@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Archivo — {{ SITENAME }}{% endblock title %}
+{% block content %}
+<section class="hero hero-compact">
+    <p class="eyebrow">REGISTRO COMPLETO</p>
+    <h1 class="hero-title">Archivo</h1>
+</section>
+<section class="archive-list">
+    {% for article in dates %}
+    <a class="archive-row" href="{{ SITEURL }}/{{ article.url }}">
+        <span class="archive-date">{{ article.date.strftime('%Y.%m.%d') }}</span>
+        <span class="archive-title">{{ article.title }}</span>
+    </a>
+    {% endfor %}
+</section>
+{% endblock content %}

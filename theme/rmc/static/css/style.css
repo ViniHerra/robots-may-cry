@@ -1,0 +1,191 @@
+/* ===========================================================================
+   ROBOTS MAY CRY · Hoja de estilo
+   ---------------------------------------------------------------------------
+   ¿Quieres cambiar el diseño? Casi todo lo que querrás ajustar está en la
+   ZONA DE PERSONALIZACIÓN de abajo (colores y tipografías). Cambia un valor
+   ahí y todo el sitio se actualiza. El resto del archivo aplica esos valores;
+   no necesitas tocarlo salvo que quieras rediseñar a fondo.
+   =========================================================================== */
+
+
+/* ===========================================================================
+   FUENTES · auto-hospedadas (no dependen de Google, cargan desde tu sitio)
+   Si quieres cambiar de tipografía, coloca el archivo .ttf en theme/rmc/
+   static/fonts/ y añade aquí un bloque @font-face nuevo.
+   =========================================================================== */
+@font-face { font-family:'IBM Plex Serif'; font-weight:400; font-style:normal;
+    src:url('../fonts/IBMPlexSerif-Regular.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'IBM Plex Serif'; font-weight:400; font-style:italic;
+    src:url('../fonts/IBMPlexSerif-Italic.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'IBM Plex Serif'; font-weight:600; font-style:normal;
+    src:url('../fonts/IBMPlexSerif-SemiBold.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'IBM Plex Sans Condensed'; font-weight:600;
+    src:url('../fonts/IBMPlexSansCond-SemiBold.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'IBM Plex Sans Condensed'; font-weight:700;
+    src:url('../fonts/IBMPlexSansCond-Bold.ttf') format('truetype'); font-display:swap; }
+@font-face { font-family:'IBM Plex Mono'; font-weight:400;
+    src:url('../fonts/IBMPlexMono-Regular.ttf') format('truetype'); font-display:swap; }
+
+
+/* ===========================================================================
+   ▼▼▼  ZONA DE PERSONALIZACIÓN — edita libremente aquí  ▼▼▼
+   =========================================================================== */
+:root {
+    /* --- COLORES ---
+       Cambia estos hex y todo el sitio cambia de paleta. */
+    --paper:        #E8EAE6;   /* fondo (gris acero claro) */
+    --paper-raised: #DEE1DC;   /* fondo de bloques de código */
+    --ink:          #1C2024;   /* texto principal */
+    --ink-soft:     #4A4F52;   /* texto secundario / resúmenes */
+    --rust:         #C8541F;   /* acento principal (naranja óxido) */
+    --oxide:        #2F6F6B;   /* acento de enlaces (verde óxido) */
+    --hairline:     #B9BEB8;   /* líneas divisorias */
+    --log:          #6B6F6A;   /* metadatos (fechas, logs) */
+
+    /* --- TIPOGRAFÍAS ---
+       Para cambiar una fuente, primero añade su @font-face arriba,
+       luego pon aquí su nombre. */
+    --display: 'IBM Plex Sans Condensed', sans-serif;  /* titulares */
+    --body:    'IBM Plex Serif', Georgia, serif;       /* cuerpo del texto */
+    --mono:    'IBM Plex Mono', monospace;             /* fechas, logs, código */
+
+    /* --- MEDIDAS ---
+       --measure controla el ancho máximo de lectura. */
+    --measure: 720px;
+    --body-size: 18px;         /* tamaño base del texto */
+}
+/* ===========================================================================
+   ▲▲▲  FIN DE LA ZONA DE PERSONALIZACIÓN  ▲▲▲
+   A partir de aquí es la maquetación. Solo tócala si quieres rediseñar.
+   =========================================================================== */
+
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: var(--body-size);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--oxide); text-decoration: none; border-bottom: 1px solid currentColor; }
+a:hover { color: var(--rust); }
+
+.page { max-width: var(--measure); margin: 0 auto; padding: 0 24px; }
+
+/* ---- header --------------------------------------------------------- */
+.site-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 36px 0 20px; flex-wrap: wrap; gap: 12px;
+}
+.brand { display: flex; align-items: center; gap: 10px; border-bottom: none; color: var(--ink); }
+.brand-mark { color: var(--ink); display: inline-flex; }
+.brand-name { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: 0.01em; }
+.site-nav a {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid transparent; margin-left: 20px;
+}
+.site-nav a:first-child { margin-left: 0; }
+.site-nav a:hover { color: var(--rust); border-bottom-color: var(--rust); }
+
+/* ---- signature: circuit trace --------------------------------------- */
+.circuit-trace {
+    height: 9px; margin: 4px 0 36px; position: relative;
+    background: linear-gradient(var(--hairline), var(--hairline)) center/100% 1px no-repeat;
+}
+.circuit-trace::before, .circuit-trace::after {
+    content: ''; position: absolute; top: 0; width: 9px; height: 9px;
+    border: 1px solid var(--hairline); background: var(--paper);
+}
+.circuit-trace::before { left: 14%; }
+.circuit-trace::after  { left: 78%; }
+
+/* ---- hero ----------------------------------------------------------- */
+.hero { padding: 8px 0 28px; }
+.hero-compact { padding: 8px 0 20px; }
+.eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+    color: var(--oxide); margin: 0 0 10px;
+}
+.eyebrow::before { content: '● '; color: var(--rust); }
+.hero-title {
+    font-family: var(--display); font-weight: 700; font-size: 44px;
+    line-height: 1.1; margin: 0 0 10px; letter-spacing: -0.01em;
+}
+.hero-sub {
+    font-family: var(--body); font-style: italic; color: var(--ink-soft);
+    font-size: 18px; margin: 0; max-width: 32ch;
+}
+
+/* ---- entry list (home) ---------------------------------------------- */
+.entry { padding: 6px 0 28px; }
+.log-tag {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em;
+    color: var(--log); text-transform: uppercase; margin: 0 0 8px;
+}
+.entry-title { font-family: var(--display); font-weight: 700; font-size: 27px; line-height: 1.25; margin: 0 0 10px; }
+.entry-title a { color: var(--ink); border-bottom: none; }
+.entry-title a:hover { color: var(--rust); }
+.entry-summary { color: var(--ink-soft); margin: 0 0 10px; }
+.read-more { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; }
+.entry-rule { height: 1px; background: var(--hairline); margin: 4px 0 24px; }
+
+.pager {
+    display: flex; justify-content: space-between; font-family: var(--mono);
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; padding: 12px 0 40px;
+}
+
+/* ---- single post ---------------------------------------------------- */
+.post-header { margin-bottom: 28px; }
+.post-title { font-family: var(--display); font-weight: 700; font-size: 36px; line-height: 1.18; margin: 8px 0 0; }
+.post-body { font-size: 19px; }
+.post-body p { margin: 0 0 22px; }
+.post-body h2 {
+    font-family: var(--display); font-weight: 700; font-size: 26px;
+    margin: 40px 0 16px; padding-top: 4px; border-top: 1px solid var(--hairline);
+}
+.post-body h3 { font-family: var(--display); font-weight: 600; font-size: 21px; margin: 30px 0 14px; }
+.post-body blockquote {
+    margin: 24px 0; padding: 2px 0 2px 18px;
+    border-left: 3px solid var(--rust); color: var(--ink-soft); font-style: italic;
+}
+.post-body code { font-family: var(--mono); background: var(--paper-raised); padding: 2px 6px; border-radius: 3px; font-size: 0.82em; }
+.post-body pre { background: var(--ink); color: var(--paper); padding: 18px; overflow-x: auto; border-radius: 4px; font-family: var(--mono); font-size: 14px; line-height: 1.5; }
+.post-body pre code { background: none; padding: 0; font-size: 1em; }
+.post-body ul, .post-body ol { padding-left: 22px; margin: 0 0 22px; }
+.post-body li { margin-bottom: 8px; }
+.post-body hr { border: none; border-top: 1px solid var(--hairline); margin: 36px 0; }
+.post-body img, .post-body video { max-width: 100%; display: block; margin: 24px auto; border-radius: 4px; }
+
+.post-tags { margin: 32px 0 0; }
+.tag { font-family: var(--mono); font-size: 12.5px; color: var(--oxide); border-bottom: none; margin-right: 14px; }
+
+/* ---- archive -------------------------------------------------------- */
+.archive-row {
+    display: flex; gap: 18px; padding: 12px 0;
+    border-bottom: 1px solid var(--hairline); color: var(--ink);
+}
+.archive-row:hover { color: var(--rust); }
+.archive-date { font-family: var(--mono); font-size: 13px; color: var(--log); flex-shrink: 0; width: 92px; }
+.archive-title { font-family: var(--display); font-weight: 600; font-size: 17px; }
+
+/* ---- footer --------------------------------------------------------- */
+.site-footer { font-family: var(--mono); font-size: 12px; color: var(--log); padding: 4px 0 48px; }
+
+a:focus-visible, .archive-row:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* ---- móvil ---------------------------------------------------------- */
+@media (max-width: 560px) {
+    body { font-size: 17px; }
+    .hero-title { font-size: 32px; }
+    .post-title { font-size: 27px; }
+    .entry-title { font-size: 23px; }
+    .site-header { padding-top: 24px; }
+    .archive-date { width: 76px; font-size: 12px; }
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} — {{ SITENAME }}{% endblock title %}
+{% block content %}
+<article class="post">
+    <header class="post-header">
+        <p class="log-tag">LOG // {{ article.date.strftime('%Y.%m.%d') }}{% if article.category %} · {{ article.category }}{% endif %}</p>
+        <h1 class="post-title">{{ article.title }}</h1>
+    </header>
+    <div class="post-body">{{ article.content }}</div>
+    {% if article.tags %}
+    <div class="post-tags">
+        {% for tag in article.tags %}<a class="tag" href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>{% endfor %}
+    </div>
+    {% endif %}
+</article>
+{% endblock content %}

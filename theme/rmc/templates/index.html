@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+    <p class="eyebrow">SISTEMA EN LÍNEA</p>
+    <h1 class="hero-title">{{ SITENAME }}</h1>
+    <p class="hero-sub">{{ SITESUBTITLE }}</p>
+</section>
+
+<section class="entry-list">
+    {% for article in articles_page.object_list %}
+    <article class="entry">
+        <p class="log-tag">LOG // {{ article.date.strftime('%Y.%m.%d') }}{% if article.category %} · {{ article.category }}{% endif %}</p>
+        <h2 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+        {% if article.summary %}<p class="entry-summary">{{ article.summary }}</p>{% endif %}
+        <a class="read-more" href="{{ SITEURL }}/{{ article.url }}">Leer entrada completa →</a>
+    </article>
+    {% if not loop.last %}<div class="entry-rule" aria-hidden="true"></div>{% endif %}
+    {% endfor %}
+</section>
+
+{% if articles_page.has_other_pages() %}
+<nav class="pager">
+    {% if articles_page.has_previous() %}<a href="{{ SITEURL }}/{{ articles_previous_page.url }}">← Más recientes</a>{% endif %}
+    {% if articles_page.has_next() %}<a href="{{ SITEURL }}/{{ articles_next_page.url }}">Entradas anteriores →</a>{% endif %}
+</nav>
+{% endif %}
+
+{% endblock content %}
