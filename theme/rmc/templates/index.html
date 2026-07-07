@@ -6,6 +6,15 @@
     <h1 class="hero-title">{{ SITENAME }}</h1>
     <p class="hero-sub">{{ SITESUBTITLE }}</p>
 </section>
+<figure style="margin: 0 0 34px;">
+  <picture>
+    <source srcset="{{ SITEURL }}/theme/images/pieta-portada.webp" type="image/webp">
+    <img src="{{ SITEURL }}/theme/images/pieta-portada.jpg"
+         alt="La Piedad de las Máquinas — un robot sostiene a otro apagado"
+         style="width:100%; max-width:560px; display:block; margin:0 auto;
+                border:1px solid #B9BEB8;">
+  </picture>
+</figure>
 
 <section class="entry-list">
     {% for article in articles_page.object_list %}
