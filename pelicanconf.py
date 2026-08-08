@@ -17,7 +17,9 @@ DEFAULT_LANG = 'es'
 
 # Menú de navegación (arriba a la derecha)
 MENUITEMS = (
-    ('Archivo', '/archives/'),
+   ('Ensayos', '/category/ensayos.html'),
+    ('Bitácora', '/bitacora/'),
+    ('Laboratorio', '/laboratorio/'),
     ('Acerca', '/about/'),
 )
 

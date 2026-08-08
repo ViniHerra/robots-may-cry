@@ -1,6 +1,6 @@
 Title: Por qué un brazo robótico no sabe que está soldando
 Date: 2026-06-10
-Category: Control
+Category: Ensayos
 Tags: actuadores, control, percepción
 Slug: brazo-robotico-soldadura
 Summary: Un brazo industrial puede repetir el mismo movimiento un millón de veces con precisión de micras. Lo que no puede hacer es darse cuenta de que algo salió mal — a menos que alguien le haya enseñado exactamente qué buscar.
