@@ -25,7 +25,13 @@
     src:url('../fonts/IBMPlexSansCond-Bold.ttf') format('truetype'); font-display:swap; }
 @font-face { font-family:'IBM Plex Mono'; font-weight:400;
     src:url('../fonts/IBMPlexMono-Regular.ttf') format('truetype'); font-display:swap; }
-
+@font-face {
+    font-family: 'OCR-B';
+    src: url('../fonts/OCR-B.woff2') format('woff2'),
+         url('../fonts/OCR-B.ttf') format('truetype');
+    font-weight: normal;
+    font-display: swap;
+}
 
 /* ===========================================================================
    ▼▼▼  ZONA DE PERSONALIZACIÓN — edita libremente aquí  ▼▼▼
@@ -47,7 +53,7 @@
        luego pon aquí su nombre. */
     --display: 'IBM Plex Sans Condensed', sans-serif;  /* titulares */
     --body:    'IBM Plex Serif', Georgia, serif;       /* cuerpo del texto */
-    --mono:    'IBM Plex Mono', monospace;             /* fechas, logs, código */
+    --mono: 'OCR-B', 'IBM Plex Mono', monospace;            /* fechas, logs, código */
 
     /* --- MEDIDAS ---
        --measure controla el ancho máximo de lectura. */
