@@ -30,8 +30,10 @@ PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
 
 # Carpetas de archivos estáticos (imágenes y videos de tus posts)
-STATIC_PATHS = ['images', 'videos', 'extra/CNAME']
+STATIC_PATHS = ['images', 'videos', 'interactivos', 'extra/CNAME']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'}}
+ARTICLE_EXCLUDES = ['interactivos']
+PAGE_EXCLUDES = ['interactivos']
 
 DEFAULT_PAGINATION = 8
 

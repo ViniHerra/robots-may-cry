@@ -189,3 +189,19 @@ a:focus-visible, .archive-row:focus-visible { outline: 2px solid var(--rust); ou
     .site-header { padding-top: 24px; }
     .archive-date { width: 76px; font-size: 12px; }
 }
+/* ---- Robot ASCII al final de la página Acerca ---- */
+.acerca-mural {
+    margin: 30px 0 0;
+    display: flex;
+    justify-content: center;
+}
+.acerca-mural iframe {
+    width: 100%;
+    max-width: 420px;
+    height: 420px;
+    border: none;
+    display: block;
+}
+@media (max-width: 560px) {
+    .acerca-mural iframe { height: 380px; }
+}
