@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% block html_lang %}{{ page.lang }}{% endblock html_lang %}
 {% block title %}{{ page.title }} — {{ SITENAME }}{% endblock title %}
+{% block og_title %}{{ page.title }}{% endblock og_title %}
 {% block content %}
 <article class="post">
     <header class="post-header"><h1 class="post-title">{{ page.title }}</h1></header>

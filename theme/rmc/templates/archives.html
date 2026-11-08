@@ -9,7 +9,7 @@
     {% for article in dates %}
     <a class="archive-row" href="{{ SITEURL }}/{{ article.url }}">
         <span class="archive-date">{{ article.date.strftime('%Y.%m.%d') }}</span>
-        <span class="archive-title">{{ article.title }}</span>
+        <span class="archive-title">{{ article.title }}{% if article.lang != DEFAULT_LANG %}<span class="lang-badge">{{ article.lang|upper }}</span>{% endif %}</span>
     </a>
     {% endfor %}
 </section>

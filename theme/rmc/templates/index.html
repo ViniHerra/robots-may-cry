@@ -1,28 +1,35 @@
 {% extends "base.html" %}
+{% block head %}
+    <link rel="preload" as="image" href="{{ SITEURL }}/theme/images/portada/portada-dim-1920.webp"
+          imagesrcset="{{ SITEURL }}/theme/images/portada/portada-dim-1280.webp 1280w, {{ SITEURL }}/theme/images/portada/portada-dim-1920.webp 1920w, {{ SITEURL }}/theme/images/portada/portada-dim-2560.webp 2560w"
+          imagesizes="max(100vw, 177.78svh)">
+{% endblock head %}
+
+{# En la primera página, la portada ocupa toda la pantalla y lleva el encabezado encima #}
+{% set es_portada = not articles_page or articles_page.number == 1 %}
+{% block hero %}{% if es_portada %}{% include 'portada-escena.html' %}{% endif %}{% endblock hero %}
+{% block site_header %}{% if not es_portada %}{{ super() }}{% endif %}{% endblock site_header %}
+{% block before_main %}{% if not es_portada %}{{ super() }}{% endif %}{% endblock before_main %}
+{% block interruptor %}{% if not es_portada %}{{ super() }}{% endif %}{% endblock interruptor %}
+
 {% block content %}
+{% if es_portada %}
+{% set temas = ['Robótica', 'Electrónica', 'CFD y simulación', 'OpenFOAM', 'Dibujo mecánico', 'Manufactura', 'Commodities', 'Ensayos'] %}
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+        {% for vuelta in range(2) %}{% for t in temas %}<span>{{ t }}</span>{% endfor %}{% endfor %}
+    </div>
+</div>
+{% endif %}
 
-<section class="hero">
-    <p class="eyebrow">SISTEMA EN LÍNEA</p>
-    <h1 class="hero-title">{{ SITENAME }}</h1>
-    <p class="hero-sub">{{ SITESUBTITLE }}</p>
-</section>
-<figure style="margin: 0 0 34px;">
-  <picture>
-    <source srcset="{{ SITEURL }}/theme/images/pieta-portada.webp" type="image/webp">
-    <img src="{{ SITEURL }}/theme/images/pieta-portada.jpg"
-         alt="La Piedad de las Máquinas — un robot sostiene a otro apagado"
-         style="width:100%; max-width:560px; display:block; margin:0 auto;
-                border:1px solid #B9BEB8;">
-  </picture>
-</figure>
-
-<section class="entry-list">
+<section class="entry-list" id="entradas">
+    <p class="section-label">Últimas entradas</p>
     {% for article in articles_page.object_list %}
-    <article class="entry">
-        <p class="log-tag">LOG // {{ article.date.strftime('%Y.%m.%d') }}{% if article.category %} · {{ article.category }}{% endif %}</p>
+    <article class="entry" lang="{{ article.lang }}">
+        <p class="log-tag">LOG // {{ article.date.strftime('%Y.%m.%d') }}{% if article.category %} · {{ article.category }}{% endif %}{% if article.lang != DEFAULT_LANG %}<span class="lang-badge">{{ article.lang|upper }}</span>{% endif %}</p>
         <h2 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
-        {% if article.summary %}<p class="entry-summary">{{ article.summary }}</p>{% endif %}
-        <a class="read-more" href="{{ SITEURL }}/{{ article.url }}">Leer entrada completa →</a>
+        {% if article.summary %}<p class="entry-summary">{{ article.summary|striptags }}</p>{% endif %}
+        <a class="read-more" href="{{ SITEURL }}/{{ article.url }}">{% if article.lang == 'en' %}Read the full entry →{% else %}Leer entrada completa →{% endif %}</a>
     </article>
     {% if not loop.last %}<div class="entry-rule" aria-hidden="true"></div>{% endif %}
     {% endfor %}
@@ -30,9 +37,12 @@
 
 {% if articles_page.has_other_pages() %}
 <nav class="pager">
-    {% if articles_page.has_previous() %}<a href="{{ SITEURL }}/{{ articles_previous_page.url }}">← Más recientes</a>{% endif %}
+    {% if articles_page.has_previous() %}<a href="{{ SITEURL }}/{{ articles_previous_page.url }}">← Más recientes</a>{% else %}<span></span>{% endif %}
     {% if articles_page.has_next() %}<a href="{{ SITEURL }}/{{ articles_next_page.url }}">Entradas anteriores →</a>{% endif %}
 </nav>
 {% endif %}
-
 {% endblock content %}
+
+{% block scripts %}{% if es_portada %}
+    <script src="{{ SITEURL }}/theme/js/portada.js?v={{ THEME_VERSION }}" defer></script>
+{% endif %}{% endblock scripts %}

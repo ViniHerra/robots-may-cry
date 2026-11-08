@@ -1,9 +1,12 @@
 {% extends "base.html" %}
-{% block title %}{{ article.title }} — {{ SITENAME }}{% endblock title %}
+{% block html_lang %}{{ article.lang }}{% endblock html_lang %}
+{% block title %}{{ article.title|striptags }} — {{ SITENAME }}{% endblock title %}
+{% block og_title %}{{ article.title|striptags }}{% endblock og_title %}
+{% block description %}{% if article.summary %}{{ article.summary|striptags|trim }}{% else %}{{ SITESUBTITLE }}{% endif %}{% endblock description %}
 {% block content %}
 <article class="post">
     <header class="post-header">
-        <p class="log-tag">LOG // {{ article.date.strftime('%Y.%m.%d') }}{% if article.category %} · {{ article.category }}{% endif %}</p>
+        <p class="log-tag">LOG // {{ article.date.strftime('%Y.%m.%d') }}{% if article.category %} · <a class="tag" href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>{% endif %}{% if article.lang != DEFAULT_LANG %}<span class="lang-badge">{{ article.lang|upper }}</span>{% endif %}</p>
         <h1 class="post-title">{{ article.title }}</h1>
     </header>
     <div class="post-body">{{ article.content }}</div>
