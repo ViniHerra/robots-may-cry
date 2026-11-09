@@ -7,20 +7,22 @@
 
 {# En la primera página, la portada ocupa toda la pantalla y lleva el encabezado encima #}
 {% set es_portada = not articles_page or articles_page.number == 1 %}
-{% block hero %}{% if es_portada %}{% include 'portada-escena.html' %}{% endif %}{% endblock hero %}
+{% block hero %}{% if es_portada %}
+{% include 'portada-escena.html' %}
+{# Cinta de temas: de orilla a orilla, pegada al borde inferior de la imagen.
+   La lista se repite 3 veces por mitad para cubrir hasta pantallas muy anchas. #}
+{% set temas = ['Robótica', 'Electrónica', 'CFD y simulación', 'OpenFOAM', 'Dibujo mecánico', 'Manufactura', 'Commodities', 'Ensayos'] %}
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+        {% for vuelta in range(6) %}{% for t in temas %}<span>{{ t }}</span><i>/</i>{% endfor %}{% endfor %}
+    </div>
+</div>
+{% endif %}{% endblock hero %}
 {% block site_header %}{% if not es_portada %}{{ super() }}{% endif %}{% endblock site_header %}
 {% block before_main %}{% if not es_portada %}{{ super() }}{% endif %}{% endblock before_main %}
 {% block interruptor %}{% if not es_portada %}{{ super() }}{% endif %}{% endblock interruptor %}
 
 {% block content %}
-{% if es_portada %}
-{% set temas = ['Robótica', 'Electrónica', 'CFD y simulación', 'OpenFOAM', 'Dibujo mecánico', 'Manufactura', 'Commodities', 'Ensayos'] %}
-<div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-        {% for vuelta in range(2) %}{% for t in temas %}<span>{{ t }}</span>{% endfor %}{% endfor %}
-    </div>
-</div>
-{% endif %}
 
 <section class="entry-list" id="entradas">
     <p class="section-label">Últimas entradas</p>

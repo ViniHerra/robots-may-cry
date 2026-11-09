@@ -230,15 +230,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .credit { font-family: var(--mono); font-size: 10.5px; color: #7a808b;   /* 5:1 de contraste: discreto pero legible */ margin: 10px 0 0; }
 
 .ticker {
-    overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    margin: 40px 0; padding: 14px 0;
+    overflow: hidden; width: 100%; padding: 13px 0;
+    background: #07090f;                       /* siempre de noche: es la orilla de la portada */
+    border-top: 1px solid #1d222b; border-bottom: 1px solid #1d222b;
 }
-.ticker-track { display: flex; width: max-content; animation: scroll 45s linear infinite; }
-.ticker span { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 0 24px; white-space: nowrap; }
+.ticker-track { display: flex; align-items: center; width: max-content; animation: scroll 70s linear infinite; }
+.ticker span { font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em; color: #8a8f98; padding: 0 18px; white-space: nowrap; }
+.ticker i { font-style: normal; font-family: var(--mono); font-size: 12.5px; color: #ff2a3c; opacity: .8; }
 @keyframes scroll { to { transform: translateX(-50%); } }
 
 /* ---- lista de entradas ---------------------------------------------- */
-.entry-list { max-width: var(--measure); margin: 0 auto; }
+.entry-list { max-width: var(--measure); margin: 48px auto 0; }
 .section-label {
     font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
     color: var(--muted); margin: 0 0 22px;

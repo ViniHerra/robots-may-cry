@@ -16,7 +16,7 @@ THEME = "theme/rmc"              # tu tema personalizado
 # Versión del diseño. Súbela (por ejemplo a '2026.11.09') cada vez que cambies
 # el CSS o el JavaScript: así los navegadores de tus lectores descargan la
 # versión nueva en lugar de usar la vieja que tenían guardada.
-THEME_VERSION = '2026.11.08.3'
+THEME_VERSION = '2026.11.08.4'
 TIMEZONE = 'America/Mexico_City'
 DEFAULT_LANG = 'es'           # idioma por defecto; un post en inglés lleva 'Lang: en'
 
